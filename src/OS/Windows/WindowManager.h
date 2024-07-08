@@ -3,8 +3,7 @@
 
 #include<Windows.h>
 #include"../../Error/error.h"
-
-#include<iostream>
+#include<string>
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -45,7 +44,8 @@ namespace OS {
                 NULL
             );
             if (hwnd == NULL) {
-                Error::SendError("Error while opening window!", -102);
+                unsigned int error = GetLastError();
+                Error::SendError("Error while opening window! Error code: "+std::to_string(error)+".", -102);
             }
             ShowWindow(hwnd, SW_SHOW);
             this->hwnd = &hwnd;

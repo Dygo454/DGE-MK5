@@ -9,8 +9,8 @@ OS::WindowSettings OS::WindowSettings::defaultSettings = {
     .y = CW_USEDEFAULT,
     .width = CW_USEDEFAULT,
     .height = CW_USEDEFAULT,
-    .windowStyles = 0,
-    .optionalStyles = WS_OVERLAPPEDWINDOW
+    .windowStyles = WS_OVERLAPPEDWINDOW,
+    .optionalStyles = 0
 };
 
 #if OS_ID == 0
