@@ -12,7 +12,7 @@ all:
 
 release:
 	windres my.rc -O coff -o my.res
-	g++ $(CFLAGS) $(PROGRAM) $(SOURCES) -o $(OUTPUT) $(INCLUDES) $(LIBRARIES)
+	g++ -mwindows $(CFLAGS) $(PROGRAM) $(SOURCES) -o $(OUTPUT) $(INCLUDES) $(LIBRARIES)
 
 github-nocompile:
 	git add *
