@@ -1,0 +1,30 @@
+#include <winresrc.h>
+IDR_MAINFRAME               ICON                    "res/iconfile.ico"
+UNTITLEDGAM_VERSION_INFO    VERSIONINFO
+FILEVERSION                 0,0,0,1
+PRODUCTVERSION              0,0,0,1
+FILEFLAGSMASK               VS_FF_PRERELEASE
+FILEFLAGS                   VS_FF_PRERELEASE
+FILEOS                      VOS__WINDOWS32
+FILETYPE                    VFT_DLL
+FILESUBTYPE                 VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "DyGames"
+            VALUE "FileDescription", "This game his yet to be titled looking at the description isn't going to change the fact that it is a template file."
+            VALUE "FileVersion", "0.01"
+            VALUE "InternalName", "UntitledGam"
+            VALUE "LegalCopyright", "Untitled Gam"
+            VALUE "OriginalFilename", "UntitledGam.exe"
+            VALUE "ProductName", "Untitled Gam"
+            VALUE "ProductVersion", "0.01"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
