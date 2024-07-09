@@ -1,4 +1,4 @@
-commit?=Unspecified Commit
+commit ?= Unspecified Commit
 PROGRAM = main.cpp
 OUTPUT = UntitledGam
 SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp
