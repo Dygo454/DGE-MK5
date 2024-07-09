@@ -8,7 +8,7 @@ namespace OS {
     public:
         virtual bool recieveEvent(WindowEvent& e) = 0;
     };
-    class GeneralWindowEventListener : WindowEventListener {
+    class GeneralWindowEventListener : public WindowEventListener {
     private:
         bool (*listenerFunc)(WindowEvent&) = NULL;
     public:

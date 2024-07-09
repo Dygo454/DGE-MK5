@@ -1,6 +1,12 @@
 #ifndef OS_H
 #define OS_H
 
+#define ERR_NULL_WINDOW -100
+#define ERR_DUPLICATE_W -101
+#define ERR_HWND_CREATE -102
+#define ERR_WRITING_BUF -103
+
+using u32 = unsigned int;
 #include"WindowEvent.h"
 #include"WindowSettings.h"
 #include"WindowEventListener.h"
