@@ -4,7 +4,9 @@
 #include<Windows.h>
 #include<string>
 #include<CL/cl.hpp>
+#include<unordered_map>
 #include"../../Error/error.h"
+#include"../../Input/KeyCodes.h"
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -26,6 +28,7 @@ namespace OS {
         WindowEventListener* listener = NULL;
 
         static Windows* singleton;
+        static std::unordered_map<u8,u8>* translator;
         static Windows* GetInstance() {
             if (singleton) {
                 return singleton;
@@ -83,17 +86,33 @@ namespace OS {
             StretchDIBits(hdc, 0, 0, bitmapWidth, bitmapHeight, 0, 0, clientWidth, clientHeight, bitmapMemory, &bitmapInfo, DIB_RGB_COLORS, SRCCOPY);
         }
     public:
+        static void setCurrentEvent(WindowEvent e) {
+            GetInstance()->current = e;
+            GetInstance()->listener->recieveEvent(e);
+        }
+        static u8 translateKeyID(u8 id) {
+            std::unordered_map<u8,u8>::const_iterator got = translator->find(id);
+            if (got == translator->end()) {
+                return IN_UNDEFINED;
+            }
+            return got->second;
+        }
+        static void populateMap();
+
         static void initWindow(WindowSettings set) {
             if (singleton) {
                 Error::SendError("Cannot initiallize window twice!", ERR_DUPLICATE_W);
             }
             singleton = new OS::Windows(set);
+            populateMap();
         }
         static void killWindow() {
             if (singleton) {
                 delete singleton;
                 singleton = NULL;
             }
+            delete translator;
+            translator = NULL;
         }
         static void writeScreen(cl::Buffer* buffer, cl::CommandQueue& q) {
             Windows& instance = *GetInstance();
@@ -104,6 +123,7 @@ namespace OS {
             }
         }
         static bool pollEvent(WindowEvent& e) {
+            GetInstance()->current = WindowEvent();
             MSG msg = {};
             if (GetMessage(&msg, NULL, 0, 0)) {
                 TranslateMessage(&msg);

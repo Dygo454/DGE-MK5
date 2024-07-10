@@ -6,22 +6,18 @@ namespace OS {
     public:
         enum Type {
             None,
-            MouseButtonDown,
-            MouseButton,
-            MouseButtonUp,
             KeyDown,
-            Key,
             KeyUp,
         };
 
     private:
         Type type;
-        unsigned int id;
+        u8 id;
         int x;
         int y;
 
     public:
-        WindowEvent(Type t = Type::None, unsigned int id = 0, int x = 0, int y = 0) {
+        WindowEvent(Type t = Type::None, u8 id = 0, int x = 0, int y = 0) {
             type = t;
             this->id = id;
             this->x = x;

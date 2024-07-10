@@ -7,6 +7,7 @@
 #define ERR_WRITING_BUF -103
 
 using u32 = unsigned int;
+using u8 = unsigned char;
 #include"WindowEvent.h"
 #include"WindowSettings.h"
 #include"WindowEventListener.h"

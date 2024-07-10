@@ -15,6 +15,7 @@ OS::WindowSettings OS::WindowSettings::defaultSettings = {
 
 #if OS_ID == 0
 OS::Windows* OS::Windows::singleton = NULL;
+std::unordered_map<u8,u8>* OS::Windows::translator = NULL;
 #elif OS_ID == 1
 OS::MacOSX* OS::MacOSX::singleton = NULL;
 #elif OS_ID == 2

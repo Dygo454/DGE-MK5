@@ -21,15 +21,25 @@ void cleanUp(int id) {
     exit(id);
 }
 
+bool printButton(OS::WindowEvent e) {
+    cout << e.getID() << endl;
+    Input::InputManager::getNextEvent(&printButton, OS::WindowEvent::Type::KeyDown);
+    return true;
+}
+
 int main(int argc, char* argv[]) {
     Error::attatchCleanUp(cleanUp);
     OS::WindowSettings set = OS::WindowSettings::defaultSettings;
     init_window(set);
     Input::InputManager::initializeInput();
+    Input::InputManager::getNextEvent(&printButton, OS::WindowEvent::Type::KeyDown);
 
     while (true) {
         OS::WindowEvent e;
-        poll_window_event(e);
+        if(!poll_window_event(e)) {
+            Error::SendQuit();
+        }
+
     }
 
     cleanUp(0);
