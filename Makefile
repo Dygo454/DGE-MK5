@@ -1,7 +1,7 @@
 commit ?= Unspecified Commit
 PROGRAM = main.cpp
 OUTPUT = UntitledGam
-SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp src/Time/*.cpp
+SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp src/Time/*.cpp src/Rendering/RendPipeline/*.cpp
 LIBRARIES = -L${OPENCL_LIB} -lx64\OpenCL -lgdi32 -static-libgcc -static-libstdc++
 INCLUDES = -I${OPENCL_INCLUDE}
 CFLAGS = -std=c++11 -msse2 -O2 -Wno-narrowing

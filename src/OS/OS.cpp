@@ -1,5 +1,4 @@
 #include"OS.h"
-#include"OSWindowSettings.h"
 #include"WindowEventListener.h"
 
 OS::WindowSettings OS::WindowSettings::defaultSettings = {
