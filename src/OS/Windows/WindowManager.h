@@ -8,11 +8,6 @@
 #include"../../Error/error.h"
 #include"../../Input/KeyCodes.h"
 
-
-
-
-#include<iostream>
-
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 namespace OS {
