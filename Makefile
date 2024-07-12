@@ -1,10 +1,10 @@
 commit ?= Unspecified Commit
 PROGRAM = main.cpp
 OUTPUT = UntitledGam
-SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp
-LIBRARIES = -L${OPENCL_LIB} -lWin32\OpenCL -lgdi32 -static-libgcc -static-libstdc++
+SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp src/Time/*.cpp
+LIBRARIES = -L${OPENCL_LIB} -lx64\OpenCL -lgdi32 -static-libgcc -static-libstdc++
 INCLUDES = -I${OPENCL_INCLUDE}
-CFLAGS = -std=c++11 -msse2 -O2
+CFLAGS = -std=c++11 -msse2 -O2 -Wno-narrowing
 
 all:
 	windres my.rc -O coff -o my.res

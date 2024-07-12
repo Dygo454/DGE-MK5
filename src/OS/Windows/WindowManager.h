@@ -8,6 +8,11 @@
 #include"../../Error/error.h"
 #include"../../Input/KeyCodes.h"
 
+
+
+
+#include<iostream>
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 namespace OS {
@@ -34,6 +39,7 @@ namespace OS {
                 return singleton;
             }
             Error::SendError("Window not initiallized!", ERR_NULL_WINDOW);
+            return NULL;
         }
         Windows(WindowSettings set) {
             wc = {};
@@ -122,13 +128,11 @@ namespace OS {
                 Error::SendError("Error synchronyzing queue! Error code: "+std::to_string((int)error)+".", ERR_WRITING_BUF);
             }
         }
-        static bool pollEvent(WindowEvent& e) {
-            GetInstance()->current = WindowEvent();
+        static bool pollEvent() {
             MSG msg = {};
-            if (GetMessage(&msg, NULL, 0, 0)) {
+            if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
-                e = GetInstance()->current;
                 return true;
             }
             return false;

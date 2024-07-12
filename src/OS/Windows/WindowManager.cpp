@@ -1,17 +1,43 @@
 #if OS_ID == 0
 
 #include"../OS.h"
+#include<iostream>
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam){
     switch (uMsg) {
         case WM_DESTROY:
+            OS::WindowEvent::running = false;
             PostQuitMessage(0);
             break;
         case WM_CLOSE:
+            OS::WindowEvent::running = false;
             DestroyWindow(hwnd);
             break;
         case WM_KEYDOWN:
             OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyDown, OS::Windows::translateKeyID(wParam)));
+            break;
+        case WM_KEYUP:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyUp, OS::Windows::translateKeyID(wParam)));
+            break;
+
+
+        case WM_LBUTTONDOWN:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyDown, IN_MOUSE_L));
+            break;
+        case WM_LBUTTONUP:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyUp, IN_MOUSE_L));
+            break;
+        case WM_MBUTTONDOWN:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyDown, IN_MOUSE_M));
+            break;
+        case WM_MBUTTONUP:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyUp, IN_MOUSE_M));
+            break;
+        case WM_RBUTTONDOWN:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyDown, IN_MOUSE_R));
+            break;
+        case WM_RBUTTONUP:
+            OS::Windows::setCurrentEvent(OS::WindowEvent(OS::WindowEvent::Type::KeyUp, IN_MOUSE_R));
             break;
     }
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
@@ -80,6 +106,10 @@ void OS::Windows::populateMap() {
     translatorRef[VK_SUBTRACT] = IN_NUM_MINUS;
     translatorRef[VK_DIVIDE] = IN_NUM_SLASH;
     translatorRef[VK_DECIMAL] = IN_NUM_DOT;
+
+    translatorRef[VK_LBUTTON] = IN_MOUSE_L;
+    translatorRef[VK_MBUTTON] = IN_MOUSE_M;
+    translatorRef[VK_RBUTTON] = IN_MOUSE_R;
 }
 
 #endif

@@ -4,6 +4,7 @@
 namespace OS {
     class WindowEvent{
     public:
+        static bool running;
         enum Type {
             None,
             KeyDown,

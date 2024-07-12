@@ -13,6 +13,8 @@ OS::WindowSettings OS::WindowSettings::defaultSettings = {
     .optionalStyles = 0
 };
 
+bool OS::WindowEvent::running = true;
+
 #if OS_ID == 0
 OS::Windows* OS::Windows::singleton = NULL;
 std::unordered_map<u8,u8>* OS::Windows::translator = NULL;

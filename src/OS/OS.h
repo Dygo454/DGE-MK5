@@ -7,6 +7,7 @@
 #define ERR_WRITING_BUF -103
 
 using u32 = unsigned int;
+using u16 = unsigned short;
 using u8 = unsigned char;
 #include"WindowEvent.h"
 #include"WindowSettings.h"
@@ -21,7 +22,7 @@ using u8 = unsigned char;
 #define init_window(n) OS::Windows::initWindow(n)
 #define kill_window() OS::Windows::killWindow()
 #define write_screen(a,b) OS::Windows::writeScreen(a,b)
-#define poll_window_event(n) OS::Windows::pollEvent(n)
+#define poll_window_event() OS::Windows::pollEvent()
 #define register_event_listener(n) OS::Windows::registerListener(n)
 #endif
 
@@ -32,7 +33,7 @@ using u8 = unsigned char;
 #define init_window(n) OS::MacOSX::initWindow(n)
 #define kill_window() OS::MacOSX::killWindow()
 #define write_screen(a,b) OS::MacOSX::writeScreen(a,b)
-#define poll_window_event(n) OS::MacOSX::pollEvent(n)
+#define poll_window_event() OS::MacOSX::pollEvent()
 #define register_event_listener(n) OS::MacOSX::registerListener(n)
 #endif
 
@@ -43,7 +44,7 @@ using u8 = unsigned char;
 #define init_window(n) OS::Unix::initWindow(n)
 #define kill_window() OS::Unix::killWindow()
 #define write_screen(a,b) OS::Unix::writeScreen(a,b)
-#define poll_window_event(n) OS::Unix::pollEvent(n)
+#define poll_window_event() OS::Unix::pollEvent()
 #define register_event_listener(n) OS::Unix::registerListener(n)
 #endif
 
