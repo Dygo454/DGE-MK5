@@ -2,13 +2,16 @@
 
 
 #define error(s)
+#define debug(s)
 
 
 #if DEBUG != 0
 
 #include<iostream>
 #undef error
+#undef debug
 #define error(s) std::cerr << s << std::endl
+#define debug(s) std::cout << s << std::endl
 
 #endif
 
@@ -25,6 +28,9 @@ namespace Error {
         }
         cleanUp(exitID);
     }
+    void SendDebug(std::string msg) {
+        debug(msg);
+    }
     void SendQuit() {
         if (cleanUp == NULL) {
             error("Clean up method was not attatched!");
@@ -35,3 +41,4 @@ namespace Error {
 }
 
 #undef error
+#undef debug

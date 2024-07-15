@@ -2,6 +2,7 @@
 #define REND_PIPELINE_H
 
 #include"../Camera/CameraSettings.h"
+#include"../CLManagement/CLManager.h"
 #include<string>
 #include<vector>
 #include<unordered_map>
@@ -11,22 +12,19 @@ namespace Rendering {
     class Stage {
     private:
         cl::Kernel* k;
-        void (*passPtr)(cl::Kernel*, cl::Buffer*&, cl::CommandQueue*, const Rendering::CameraSettings&);
+        void (*passPtr)(cl::Kernel* ,cl::Buffer*, cl::Buffer*, cl::Buffer*, cl::CommandQueue*, const Rendering::CameraSettings&, cl::Buffer*, cl::Buffer*);
     public:
         Stage() {
             k = 0;
             passPtr = 0;
         }
-        Stage(cl::Kernel* k, void (*passPtr)(cl::Kernel*, cl::Buffer*&, cl::CommandQueue*, const Rendering::CameraSettings&)) {
+        Stage(cl::Kernel* k, void (*passPtr)(cl::Kernel* ,cl::Buffer*, cl::Buffer*, cl::Buffer*, cl::CommandQueue*, const Rendering::CameraSettings&, cl::Buffer*, cl::Buffer*)) {
             this->k = k;
             this->passPtr = passPtr;
         }
-        void pass(cl::Buffer*& buffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings) {
-            passPtr(k, buffer, q, settings);
+        void pass(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer* assembledBuffer, cl::Buffer* outBuffer) {
+            passPtr(k, vertexBuffer, assemblyBuffer, textureBuffers, q, settings, assemblyBuffer, outBuffer);
         }
-        static std::unordered_map<std::string, cl::Kernel*>* kernels;
-        static void initKernels(cl::CommandQueue* q);
-        static void killKernels();
     };
 
     class RendPipeline {
@@ -38,10 +36,9 @@ namespace Rendering {
             this->q = q;
             this->stages = stages;
         }
-        void pipe(cl::Buffer* buffer, const Rendering::CameraSettings& settings) {
-            cl::Buffer* movingPtr = buffer;
+        void pipe(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, const Rendering::CameraSettings& settings, cl::Buffer* assembledBuffer, cl::Buffer* outBuffer) {
             for (Stage stage : stages) {
-                stage.pass(movingPtr, q, settings);
+                stage.pass(vertexBuffer, assemblyBuffer, textureBuffers, q, settings, assemblyBuffer, outBuffer);
             }
         }
         static RendPipeline* defaultPipe;

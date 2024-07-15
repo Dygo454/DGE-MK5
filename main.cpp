@@ -5,12 +5,18 @@
 #include"src/Error/error.h"
 #include"src/OS/OS.h"
 #include"src/Input/Input.h"
+#include"src/Rendering/CLManagement/CLManager.h"
+#include"src/Rendering/RendPipeline/RendPipeline.h"
 
 #include<iostream>
 #include<thread>
 using namespace std;
 
 void cleanUp(int id) {
+    Rendering::RendPipeline::killDefault();
+    Rendering::CLManager::killTextureBuffers();
+    Rendering::CLManager::killKernels();
+    Rendering::CLManager::killCL();
     Input::InputManager::killInput();
     kill_window();
     Time::GameTime::killTime();
@@ -23,6 +29,9 @@ void setUp() {
     OS::WindowSettings set = OS::WindowSettings::defaultSettings;
     init_window(set);
     Input::InputManager::initializeInput();
+    Rendering::CLManager::initCL();
+    Rendering::CLManager::initKernels();
+    Rendering::RendPipeline::initDefault(Rendering::CLManager::getQueue());
 }
 
 int main(int argc, char* argv[]) {

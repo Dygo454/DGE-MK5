@@ -6,6 +6,7 @@
 namespace Error {
     void attatchCleanUp(void (*func)(int));
     void SendError(std::string errMsg, int exitID = -1);
+    void SendDebug(std::string msg);
     void SendQuit();
 }
 
