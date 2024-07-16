@@ -15,11 +15,39 @@ void Rendering::CLManager::initCL() {
         Error::SendError("CL Manager has already been initialized!", ERR_DUPLICA_CL);
     }
     instance = new CLManager();
+
+    double* projectionMatrixOrtho = new double[16];
+    double* projectionMatrixPersp = new double[16];
+    for (int i = 0; i < 16; i++) {
+        projectionMatrixOrtho[i] = 0;
+        projectionMatrixPersp[i] = 0;
+    }
+    projectionMatrixOrtho[0] = 1.0/settings.sizeY;
+    projectionMatrixOrtho[5] = 1.0/settings.sizeY;
+    projectionMatrixOrtho[10] = -1 / (settings.farPlane - settings.nearPlane);
+    projectionMatrixOrtho[11] = -settings.nearPlane / (settings.farPlane - settings.nearPlane);
+    projectionMatrixOrtho[15] = 1;
+
+    double scale = 1 / tan(settings.fovY * 0.5 * M_PI / 180);
+    projectionMatrixPersp[0] = scale;
+    projectionMatrixPersp[5] = scale;
+    projectionMatrixPersp[10] = -settings.farPlane / (settings.farPlane - settings.nearPlane);
+    projectionMatrixPersp[14] = -settings.farPlane * settings.nearPlane / (settings.farPlane - settings.nearPlane);
+    projectionMatrixPersp[11] = -1;
+
+    Shaders::projMatOrthoBuf = new cl::Buffer(GetInstance()->c, CL_MEM_READ_ONLY, sizeof(double)*16);
+    Shaders::projMatPerspBuf = new cl::Buffer(GetInstance()->c, CL_MEM_READ_ONLY, sizeof(double)*16);
+    GetInstance()->q.enqueueWriteBuffer(Shaders::projMatOrthoBuf, CL_TRUE, 0, sizeof(double)*16, projectionMatrixOrtho);
+    GetInstance()->q.enqueueWriteBuffer(Shaders::projMatPerspBuf, CL_TRUE, 0, sizeof(double)*16, projectionMatrixPersp);
+    delete[] projectionMatrixOrtho;
+    delete[] projectionMatrixPersp;
 }
 cl::CommandQueue* Rendering::CLManager::getQueue() {
     return GetInstance()->q;
 }
 void Rendering::CLManager::killCL() {
+    delete Shaders::projMatOrthoBuf;
+    delete Shaders::projMatPerspBuf;
     if (instance) {
         delete instance;
     }
