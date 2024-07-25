@@ -16,7 +16,7 @@ release:
 
 github-nocompile:
 	git add *
-	git commit -m "$(commit)"
+	git commit -m "$(commit)" -a
 	git push -u origin main --force
 
 restore:
