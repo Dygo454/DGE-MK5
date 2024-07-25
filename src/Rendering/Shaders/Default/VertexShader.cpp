@@ -12,12 +12,12 @@ namespace Shaders {
         "    unsigned char rasterStyle;"
         "    bool orthographic;"
         "};"
-        "kernel void VertexShader(global void* verticies, global double* projectionMatrix, CameraSettings settings) {"
+        "kernel void VertexShader(global void verticies, global double* projectionMatrix, CameraSettings settings) {"
         "    unsigned int id = get_global_id(0);"
         "    unsigned int size = ((unsigned int*)verticies)[0];"
         "    if (id >= size) return;"
-        "    id = (id * 12)+4;"
-        "    double* vertex = (int*)(verticies + id);"
+        "    id = (id * 3)+1;"
+        "    double* vertex = ((double*)verticies) + id;"
         "    double& x = vertex[0];"
         "    double& y = vertex[1];"
         "    double& z = vertex[2];"
@@ -37,7 +37,7 @@ namespace Shaders {
         "    z /= w;"
         "}";
     }
-    void doVertexShader(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
+    void doVertexShader(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
         cl::Buffer* projMat = projectionMatrixPersp;
         if (settings.orthographic) {
             projMat = projectionMatrixOrtho;

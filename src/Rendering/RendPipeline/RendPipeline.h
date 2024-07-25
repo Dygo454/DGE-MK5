@@ -22,8 +22,8 @@ namespace Rendering {
             this->k = k;
             this->passPtr = passPtr;
         }
-        void pass(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
-            passPtr(k, vertexBuffer, assemblyBuffer, textureBuffers, q, settings, passingBuffer, outBuffer);
+        void pass(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
+            passPtr(k, vertexBuffer, assemblyBuffer, textureBuffer, q, settings, passingBuffer, outBuffer);
         }
     };
 
@@ -36,10 +36,10 @@ namespace Rendering {
             this->q = q;
             this->stages = stages;
         }
-        void pipe(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, const Rendering::CameraSettings& settings, cl::Buffer* outBuffer) {
+        void pipe(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, const Rendering::CameraSettings& settings, cl::Buffer* outBuffer) {
             cl::Buffer* passingBuffer = NULL;
             for (Stage stage : stages) {
-                stage.pass(vertexBuffer, assemblyBuffer, textureBuffers, q, settings, &passingBuffer, outBuffer);
+                stage.pass(vertexBuffer, assemblyBuffer, textureBuffer, q, settings, &passingBuffer, outBuffer);
             }
             if (passingBuffer) {
                 delete passingBuffer;

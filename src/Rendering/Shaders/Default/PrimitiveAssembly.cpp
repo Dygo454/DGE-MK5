@@ -32,7 +32,10 @@ namespace Shaders {
         "    "
         "    return !(has_neg && has_pos);"
         "}"
-        "kernel void PrimitiveAssembly(global void* verticies, global void* assembly, global void* assembled, CameraSettings settings) {"
+        "void increase(volatile __global int* counter, unsigned int num) {"
+        "    atomic_add(counter, num);"
+        "}"
+        "kernel void PrimitiveAssembly(global void* verticies, global void* assembly, global void* assembled, global unsigned int* pixelBuffer, CameraSettings settings) {"
         "    unsigned int tri = get_global_id(0);"
         "    unsigned int x = get_global_id(1);"
         "    unsigned int y = get_global_id(2);"
@@ -87,16 +90,21 @@ namespace Shaders {
         "    if (!pointInTriangle(v, v1, v2, v3)) {"
         "        return;"
         "    }"
-        "    atomic_add(((unsigned int*)assembled)[pixel+1], 1);"
-        "    atomic_add(((unsigned int*)assembled)[0], 14);"
+        "    increase((unsigned int*)assembled, 14);"
+        "    unsigned int pixelNew = 0;"
+        "    for (int i = 0; i < pixelOld; i++) {"
+        "        pixelNew += 12 + (14 * ((unsigned int*)assembled)[pixelOld]);"
+        "    }"
         "}";
     }
-    void doPrimitiveAssembly(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffers, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
-        cl::Buffer* assembledBuffer = new cl::Buffer(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, settings.targetWidth*settings.targetHeight*12 + 4);
-        u32 tempSize = settings.targetWidth*settings.targetHeight*12 + 4;
-        q->enqueueWriteBuffer(*assembledBuffer, CL_FALSE, 0, 4, &tempSize);
+    void doPrimitiveAssembly(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
+        unsigned int size = settings.targetWidth*settings.targetHeight*12;
+        cl::Buffer sizeBuf(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, 4);
+        cl::Buffer* assembledBuffer = new cl::Buffer(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, size+4);
+        q->enqueueWriteBuffer(*sizeBuf, CL_FALSE, 0, 4, &size);
+        q->enqueueFillBuffer(*outBuffer, 0, 0, settings.targetWidth*settings.targetHeight);
         cl::KernelFunctor primitiveAssembly(*k, *q, cl::NullRange, cl::NDRange((assemblyBuffer->getInfo<CL_MEM_SIZE>()-4)/12, settings.targetWidth, settings.targetHeight), cl::NullRange);
-        primitiveAssembly(*vertexBuffer, *assemblyBuffer, *assembledBuffer, settings);
+        primitiveAssembly(*vertexBuffer, *assemblyBuffer, *assembledBuffer, *outBuffer, settings);
         (*passingBuffer) = assembledBuffer;
         q->finish();
     }
