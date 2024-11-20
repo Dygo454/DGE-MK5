@@ -32,20 +32,8 @@ namespace Rendering {
         cl::CommandQueue* q;
         std::vector<Stage> stages;
     public:
-        RendPipeline(cl::CommandQueue* q, std::vector<Stage>& stages) {
-            this->q = q;
-            this->stages = stages;
-        }
-        void pipe(cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, const Rendering::CameraSettings& settings, cl::Buffer* outBuffer) {
-            cl::Buffer* passingBuffer = NULL;
-            for (Stage stage : stages) {
-                stage.pass(vertexBuffer, assemblyBuffer, textureBuffer, q, settings, &passingBuffer, outBuffer);
-            }
-            if (passingBuffer) {
-                delete passingBuffer;
-            }
-        }
-        static RendPipeline* defaultPipe;
+        virtual void pipe() = 0;
+        static RendPipeline* defaultPipe = NULL;
         static void initDefault(cl::CommandQueue* q);
         static void killDefault();
     };
