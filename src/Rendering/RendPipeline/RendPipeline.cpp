@@ -50,7 +50,7 @@ void Rendering::RendPipeline::pipe(cl::Buffer* output, std::vector<cl::NDRange> 
         const unsigned int* currParams = stages[i]->getParams();
         for (unsigned int n = 1; n <= currParams[0]; ++n) {
             void* currParam = params + ((size_t)(paramInfo[(currParams[n]+1)*2]));
-            if (bufferBitmap[currParams[n]/8] & (0x1 << currParams[n]%8)) stages[i]->getKernel()->setArg(n-1, (cl::Buffer*)currParam);
+            if (bufferBitmap[currParams[n]/8] & (0x1 << currParams[n]%8)) stages[i]->getKernel()->setArg(n-1, **(cl::Buffer**)currParam);
             else stages[i]->getKernel()->setArg(n-1, (size_t)(paramInfo[currParams[n]*2 + 3]), currParam);
         }
         q->enqueueNDRangeKernel(*k, offsets[i], globals[i], locals[i]);
