@@ -4,8 +4,4 @@ struct CameraSettings {
     double nearPlane;
     double farPlane;
     double fovY;
-    double camWidth;
-    double camHeight;
-    unsigned char rasterStyle;
-    bool orthographic;
 };

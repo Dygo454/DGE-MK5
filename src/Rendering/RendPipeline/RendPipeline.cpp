@@ -16,7 +16,7 @@ const unsigned int* Rendering::Stage::getParams() {
 }
 
 Rendering::RendPipeline::RendPipeline(cl::CommandQueue* q, unsigned int numStages, Stage* stages, unsigned int* paramInfo, unsigned int* bufferBitmap)
-: q(q), numStages(numStages), stages(stages), paramInfo(paramInfo), bufferBitmap(bufferBitmap), params(0) {}
+    : q(q), numStages(numStages), stages(stages), paramInfo(paramInfo), bufferBitmap(bufferBitmap), params(0) {}
 Rendering::RendPipeline::~RendPipeline() {
     for (unsigned int i = 0; i < numStages; ++i) {
         delete stages[i];
@@ -60,7 +60,11 @@ void Rendering::RendPipeline::pipe(cl::Buffer* output, std::vector<cl::NDRange> 
     params = 0;
 }
 
-void Rendering::RendPipeline::initDefault(cl::CommandQueue* q); // TODO: DOOOOO MEEEEEE
+void Rendering::RendPipeline::initDefault(cl::CommandQueue* q) {
+    // defaultPipe3d = RendPipelineFBuilder(q)
+    //     .withParam(...)
+    //     .....;
+}
 Rendering::RendPipeline* Rendering::RendPipeline::getDefault2D() {
     return defaultPipe2d;
 }

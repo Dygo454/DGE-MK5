@@ -1,7 +1,7 @@
 #include"../DefaultShaders.h"
 
 namespace Shaders {
-    std::string getPrimitiveAssembly(cl::CommandQueue* q) {
+    std::string getPrimitiveAssembly() {
         return "struct CameraSettings {"
         "    unsigned int targetWidth;"
         "    unsigned int targetHeight;"
@@ -96,16 +96,5 @@ namespace Shaders {
         "        pixelNew += 12 + (14 * ((unsigned int*)assembled)[pixelOld]);"
         "    }"
         "}";
-    }
-    void doPrimitiveAssembly(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
-        unsigned int size = settings.targetWidth*settings.targetHeight*12;
-        cl::Buffer sizeBuf(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, 4);
-        cl::Buffer* assembledBuffer = new cl::Buffer(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, size+4);
-        q->enqueueWriteBuffer(*sizeBuf, CL_FALSE, 0, 4, &size);
-        q->enqueueFillBuffer(*outBuffer, 0, 0, settings.targetWidth*settings.targetHeight);
-        cl::KernelFunctor primitiveAssembly(*k, *q, cl::NullRange, cl::NDRange((assemblyBuffer->getInfo<CL_MEM_SIZE>()-4)/12, settings.targetWidth, settings.targetHeight), cl::NullRange);
-        primitiveAssembly(*vertexBuffer, *assemblyBuffer, *assembledBuffer, *outBuffer, settings);
-        (*passingBuffer) = assembledBuffer;
-        q->finish();
     }
 }

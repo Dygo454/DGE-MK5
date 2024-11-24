@@ -7,9 +7,6 @@
 #include"src/Input/Input.h"
 #include"src/Rendering/CLManagement/CLManager.h"
 #include"src/Rendering/RendPipeline/RendPipeline.h"
-
-#include<iostream>
-#include<thread>
 using namespace std;
 
 void cleanUp(int id) {

@@ -1,6 +1,6 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732133657836"><hook NAME="MapStyle" background="#2e3440" zoom="0.754">
+<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.754">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" followedTemplateLocation="template:/dark_nord_template.mm" followedMapLastTime="1714597358000" fit_to_viewport="false"/>
 
 <map_styles>
@@ -78,54 +78,7 @@
 </hook>
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
 <font BOLD="true"/>
-<node TEXT="RenderPipelineMK2" LOCALIZED_STYLE_REF="defaultstyle.floating" POSITION="bottom_or_right" ID="ID_285636223" CREATED="1721902050590" MODIFIED="1732133657836" HGAP_QUANTITY="40.8 pt" VSHIFT_QUANTITY="-307.80001 pt">
-<hook NAME="FreeNode"/>
-<node TEXT="class RenderPipeline;" ID="ID_650373249" CREATED="1721902271882" MODIFIED="1732133695668">
-<node TEXT="virtual void passParam(unsigned int paramInd, unsigned int size, void* param);" POSITION="bottom_or_right" ID="ID_31785169" CREATED="1721902070187" MODIFIED="1732133695653"/>
-<node TEXT="virtual void pipe(Buffer* output, const CameraSettings&amp; settings);" POSITION="bottom_or_right" ID="ID_1417911566" CREATED="1720767646698" MODIFIED="1721902412827"/>
-<node TEXT="static RendPipeline* Default;" POSITION="bottom_or_right" ID="ID_1344222556" CREATED="1720767741044" MODIFIED="1721902246456"/>
-<node TEXT="static void initDefault();" POSITION="bottom_or_right" ID="ID_835973724" CREATED="1720774746178" MODIFIED="1720774790582"/>
-<node TEXT="class Stage;" ID="ID_442239505" CREATED="1732133600513" MODIFIED="1732133691450">
-<node TEXT="Kernel" ID="ID_1853361344" CREATED="1732133700950" MODIFIED="1732133715997"/>
-<node TEXT="virtual void passParam();" ID="ID_1860724572" CREATED="1732133722714" MODIFIED="1732133876895"/>
-</node>
-</node>
-<node TEXT="class 3DRenderPipeline : virtual public RenderPipeline;" ID="ID_1138803671" CREATED="1721902307087" MODIFIED="1732133643291">
-<node TEXT="void passParam(...);" ID="ID_757396909" CREATED="1721902419939" MODIFIED="1721902535464">
-<node TEXT="ExpectedParams" ID="ID_231330930" CREATED="1721902541959" MODIFIED="1721902553688"/>
-</node>
-<node TEXT="virtual void pipe(...);" ID="ID_1428596622" CREATED="1720767646698" MODIFIED="1721902711453"/>
-</node>
-<node TEXT="class 2DRenderPipeline : virtual public RenderPipeline;" ID="ID_1616094517" CREATED="1721902338313" MODIFIED="1732133672023">
-<node ID="ID_769220906" CREATED="1721902669918" MODIFIED="1721902669918"><richcontent TYPE="NODE">
-
-<html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      void passParam(...);
-    </p>
-  </body>
-</html>
-</richcontent>
-<node TEXT="ExpectedParams" ID="ID_1853875047" CREATED="1721902541959" MODIFIED="1721902553688">
-<node TEXT="0: NumSprites" ID="ID_748091258" CREATED="1721902555995" MODIFIED="1721902589285"/>
-<node TEXT="1-?: Sprite" ID="ID_720426488" CREATED="1721902639404" MODIFIED="1721902662397"/>
-</node>
-</node>
-<node TEXT="virtual void pipe(...);" ID="ID_1396154536" CREATED="1720767646698" MODIFIED="1721902711453"/>
-</node>
-<node TEXT="class KernelParameterList;" ID="ID_454054001" CREATED="1732133951672" MODIFIED="1732133986264">
-<node TEXT="static enum type;" ID="ID_635085123" CREATED="1732133990672" MODIFIED="1732134000000"/>
-<node TEXT="vector&lt;int&gt; verts;" ID="ID_371947694" CREATED="1732134005023" MODIFIED="1732134081640"/>
-<node TEXT="vector&lt;int&gt; tris" ID="ID_1234254024" CREATED="1732134008570" MODIFIED="1732134088202"/>
-<node TEXT="" ID="ID_1332661963" CREATED="1732134009367" MODIFIED="1732134009367"/>
-<node TEXT="" ID="ID_905335955" CREATED="1732134009539" MODIFIED="1732134009539"/>
-</node>
-</node>
-<node TEXT="RendPipelineMK1" LOCALIZED_STYLE_REF="defaultstyle.floating" POSITION="bottom_or_right" ID="ID_5923153" CREATED="1720774430073" MODIFIED="1721902043840" HGAP_QUANTITY="-741.00001 pt" VSHIFT_QUANTITY="-296.40001 pt">
+<node TEXT="RendPipelineMK1" LOCALIZED_STYLE_REF="defaultstyle.floating" POSITION="bottom_or_right" ID="ID_5923153" CREATED="1720774430073" MODIFIED="1732302533096" HGAP_QUANTITY="-735.60001 pt" VSHIFT_QUANTITY="-534.60002 pt">
 <hook NAME="FreeNode"/>
 <node TEXT="CommandQueue* q;" POSITION="bottom_or_right" ID="ID_514572967" CREATED="1720771210826" MODIFIED="1720775153433"/>
 <node TEXT="vector&lt;Stage&gt; stages;" POSITION="bottom_or_right" ID="ID_1683407045" CREATED="1720767793173" MODIFIED="1720767821286">
@@ -163,6 +116,50 @@
 </node>
 <node TEXT="static void initDefault();" POSITION="bottom_or_right" ID="ID_734715466" CREATED="1720774746178" MODIFIED="1720774790582">
 <node TEXT="Stage::initKernels();" ID="ID_540789367" CREATED="1720774792585" MODIFIED="1720774820255"/>
+</node>
+</node>
+<node TEXT="RenderPipelineMK2" LOCALIZED_STYLE_REF="defaultstyle.floating" POSITION="bottom_or_right" ID="ID_285636223" CREATED="1721902050590" MODIFIED="1732302523203" HGAP_QUANTITY="118.2 pt" VSHIFT_QUANTITY="-524.40002 pt">
+<hook NAME="FreeNode"/>
+<node TEXT="class Stage;" ID="ID_830916481" CREATED="1732302031453" MODIFIED="1732302050227">
+<node TEXT="Stage(cl::Kernel* k, unsigned int* params);" ID="ID_149368005" CREATED="1732302101555" MODIFIED="1732302102319"/>
+<node TEXT="cl::Kernel* getKernel();" ID="ID_734238278" CREATED="1732302114470" MODIFIED="1732302115696"/>
+<node TEXT="const unsigned int* getParams();" ID="ID_678950325" CREATED="1732302122720" MODIFIED="1732302123747"/>
+</node>
+<node TEXT="class RenderPipeline;" ID="ID_650373249" CREATED="1721902271882" MODIFIED="1732133695668">
+<node TEXT="RendPipeline(cl::CommandQueue* q, unsigned int numStages, Stage* stages, unsigned int* paramInfo, unsigned int* bufferBitmap);" POSITION="bottom_or_right" ID="ID_1036246301" CREATED="1732302138557" MODIFIED="1732302308406"/>
+<node TEXT="void passParam(unsigned int paramInd, unsigned int size, void* param);" POSITION="bottom_or_right" ID="ID_31785169" CREATED="1721902070187" MODIFIED="1732302181045"/>
+<node TEXT="void pipe(cl::Buffer* output, std::vector&lt;cl::NDRange&gt; offsets, std::vector&lt;cl::NDRange&gt; locals, std::vector&lt;cl::NDRange&gt; globals);" POSITION="bottom_or_right" ID="ID_1417911566" CREATED="1720767646698" MODIFIED="1732302221922"/>
+<node TEXT="static RendPipeline* getDefault2D();" POSITION="bottom_or_right" ID="ID_345401461" CREATED="1720767741044" MODIFIED="1732302254206">
+<node TEXT="vector&lt;Stage&gt; stages" ID="ID_1718325112" CREATED="1732301559692" MODIFIED="1732301576057"/>
+</node>
+<node TEXT="static RendPipeline* getDefault3D();" POSITION="bottom_or_right" ID="ID_1344222556" CREATED="1720767741044" MODIFIED="1732302243646">
+<node TEXT="vector&lt;Stage&gt; stages" ID="ID_402699662" CREATED="1732301559692" MODIFIED="1732301576057">
+<node TEXT="VertexShader" ID="ID_1429729336" CREATED="1732301579109" MODIFIED="1732301583679"/>
+<node TEXT="PrimitiveAssembly" ID="ID_1713630282" CREATED="1732301585435" MODIFIED="1732301592980"/>
+<node TEXT="Rasterization" ID="ID_633297513" CREATED="1732301604708" MODIFIED="1732301605770"/>
+<node TEXT="GBufferShader" ID="ID_1126567272" CREATED="1732301616342" MODIFIED="1732301623549"/>
+<node TEXT="LightingShader" ID="ID_181574597" CREATED="1732301629801" MODIFIED="1732301632958"/>
+<node TEXT="DepthShader" ID="ID_1424614211" CREATED="1732301654197" MODIFIED="1732301656435"/>
+<node TEXT="CompositionShader" ID="ID_1692551778" CREATED="1732301664113" MODIFIED="1732301666451"/>
+</node>
+</node>
+<node TEXT="static void initDefault();" POSITION="bottom_or_right" ID="ID_835973724" CREATED="1720774746178" MODIFIED="1720774790582"/>
+<node TEXT="class Stage;" POSITION="bottom_or_right" ID="ID_442239505" CREATED="1732133600513" MODIFIED="1732133691450">
+<node TEXT="Kernel" ID="ID_1853361344" CREATED="1732133700950" MODIFIED="1732133715997"/>
+<node TEXT="virtual void passParam();" ID="ID_1860724572" CREATED="1732133722714" MODIFIED="1732133876895"/>
+</node>
+</node>
+<node TEXT="class StageFBuilder;" ID="ID_1222668397" CREATED="1732302064619" MODIFIED="1732302069465">
+<node TEXT="StageFBuilder(cl::CommandQueue* q);" ID="ID_879840055" CREATED="1732302442337" MODIFIED="1732302442946"/>
+<node TEXT="StageFBuilder&amp; withKernel(const std::string&amp; kName);" ID="ID_14956547" CREATED="1732302451575" MODIFIED="1732302453218"/>
+<node TEXT="StageFBuilder&amp; withParam(unsigned int indexFromPipe, unsigned int size);" ID="ID_1720409942" CREATED="1732302464874" MODIFIED="1732302465959"/>
+<node TEXT="Stage* build();" ID="ID_897744093" CREATED="1732302471871" MODIFIED="1732302472601"/>
+</node>
+<node TEXT="class RendPipelineFBuilder;" ID="ID_1089732240" CREATED="1732302071491" MODIFIED="1732302083699">
+<node TEXT="RendPipelineFBuilder(cl::CommandQueue* q);" ID="ID_1588653957" CREATED="1732302476085" MODIFIED="1732302482128"/>
+<node TEXT="RendPipelineFBuilder&amp; withParam(unsigned int size);" ID="ID_1509175999" CREATED="1732302489741" MODIFIED="1732302490544"/>
+<node TEXT="RendPipelineFBuilder&amp; withStage(Stage* stage);" ID="ID_1379293610" CREATED="1732302498697" MODIFIED="1732302500323"/>
+<node TEXT="RendPipeline* build();" ID="ID_1598326871" CREATED="1732302510182" MODIFIED="1732302511518"/>
 </node>
 </node>
 </node>

@@ -1,11 +1,9 @@
 #ifndef REND_PIPELINE_H
 #define REND_PIPELINE_H
 
-#include"../Camera/CameraSettings.h"
 #include"../CLManagement/CLManager.h"
 #include<string>
 #include<vector>
-#include<unordered_map>
 #include<CL/cl.hpp>
 
 #define ERR_BUILD_STGE -400
@@ -37,10 +35,10 @@ namespace Rendering {
         static RendPipeline* defaultPipe2d;
         static RendPipeline* defaultPipe3d;
     public:
-        RendPipeline(cl::CommandQueue* q, unsigned int numStages, Stage* stages, unsigned int* paramInfo);
+        RendPipeline(cl::CommandQueue* q, unsigned int numStages, Stage* stages, unsigned int* paramInfo, unsigned int* bufferBitmap);
         ~RendPipeline();
         void passParam(unsigned int paramInd, unsigned int size, void* param);
-        void pipe(cl::Buffer* output, const CameraSettings& settings);
+        void pipe(cl::Buffer* output, std::vector<cl::NDRange> offsets, std::vector<cl::NDRange> locals, std::vector<cl::NDRange> globals);
 
         static void initDefault(cl::CommandQueue* q);
         static Rendering::RendPipeline* getDefault2D();

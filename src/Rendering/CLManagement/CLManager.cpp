@@ -54,12 +54,13 @@ void Rendering::CLManager::killCL() {
 }
 
 void Rendering::CLManager::initKernels() {
-    addKernel("VertexShader", Shaders::getVertexShader(GetInstance()->q));
-    addKernel("PrimitiveAssembly", Shaders::getPrimitiveAssembly(GetInstance()->q));
-    addKernel("Rasterization", Shaders::getRasterization(GetInstance()->q));
-    addKernel("PixelShader", Shaders::getPixelShader(GetInstance()->q));
-    addKernel("DepthShader", Shaders::getDepthShader(GetInstance()->q));
-    addKernel("AlphaBlending", Shaders::getAlphaBlending(GetInstance()->q));
+    addKernel("VertexShader", Shaders::getVertexShader());
+    addKernel("PrimitiveAssembly", Shaders::getPrimitiveAssembly());
+    addKernel("Rasterization", Shaders::getRasterization());
+    addKernel("GBufferShader", Shaders::getGBufferShader());
+    addKernel("LightingShader", Shaders::getLightingShader());
+    addKernel("DepthShader", Shaders::getDepthShader());
+    addKernel("CompositionShader", Shaders::getCompositionShader());
 }
 void Rendering::CLManager::addKernel(std::string name, const std::string& source) {
     if (GetInstance()->kernels.find(name) != GetInstance()->kernels.end()) {

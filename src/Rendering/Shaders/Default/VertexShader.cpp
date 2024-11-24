@@ -1,18 +1,26 @@
 #include"../DefaultShaders.h"
 
 namespace Shaders {
-    std::string getVertexShader(cl::CommandQueue* q) {
-        return "struct CameraSettings {"
+    std::string getVertexShader() {
+        return "struct Vector {"
+        "    double x;"
+        "    double y;"
+        "    double z;"
+        "    double w;"
+        "};"
+        ""
+        "struct CameraSettings {"
         "    unsigned int targetWidth;"
         "    unsigned int targetHeight;"
         "    double nearPlane;"
         "    double farPlane;"
-        "    double fovY;"
-        "    double sizeY;"
-        "    unsigned char rasterStyle;"
-        "    bool orthographic;"
+        "    double fovY; // turns to size for orthographic"
+        "    Vector pos;"
+        "    Vector rot;"
+        "    Vector scl;"
         "};"
-        "kernel void VertexShader(global void verticies, global double* projectionMatrix, CameraSettings settings) {"
+        ""
+        "kernel void VertexShader(global void* verticies, global double* projectionMatrix, CameraSettings settings) {"
         "    unsigned int id = get_global_id(0);"
         "    unsigned int size = ((unsigned int*)verticies)[0];"
         "    if (id >= size) return;"
@@ -36,13 +44,5 @@ namespace Shaders {
         "    y /= w;"
         "    z /= w;"
         "}";
-    }
-    void doVertexShader(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
-        cl::Buffer* projMat = projectionMatrixPersp;
-        if (settings.orthographic) {
-            projMat = projectionMatrixOrtho;
-        }
-        cl::KernelFunctor vertexShader(*k, *q, cl::NullRange, cl::NDRange((vertexBuffer->getInfo<CL_MEM_SIZE>() - 4)/12), cl::NullRange);
-        vertexShader(*vertexBuffer, *projMat, settings);
     }
 }

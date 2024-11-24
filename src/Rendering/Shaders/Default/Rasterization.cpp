@@ -1,7 +1,7 @@
 #include"../DefaultShaders.h"
 
 namespace Shaders {
-    std::string getRasterization(cl::CommandQueue* q) {
+    std::string getRasterization() {
         return "struct CameraSettings {"
         "    unsigned int targetWidth;"
         "    unsigned int targetHeight;"
@@ -94,13 +94,5 @@ namespace Shaders {
         "    }"
         "    increase((unsigned int*)assembled, 14);"
         "}";
-    }
-    void doRasterization(cl::Kernel* k, cl::Buffer* vertexBuffer, cl::Buffer* assemblyBuffer, cl::Buffer* textureBuffer, cl::CommandQueue* q, const Rendering::CameraSettings& settings, cl::Buffer** passingBuffer, cl::Buffer* outBuffer) {
-        unsigned int size;
-        q->enqueueReadBuffer(**passingBuffer, CL_TRUE, 0, 4, &size);
-        cl::Buffer* newAssembledBuf = new cl::Buffer(assemblyBuffer->getInfo<CL_MEM_CONTEXT>(), CL_MEM_READ_WRITE, size);
-        cl::KernelFunctor rasterization(*k, *q, cl::NullRange, cl::NDRange((assemblyBuffer->getInfo<CL_MEM_SIZE>()-4)/12, settings.targetWidth, settings.targetHeight), cl::NullRange);
-        delete (*passingBuffer);
-        (*passingBuffer) = newAssembledBuf;
     }
 }
