@@ -1,6 +1,6 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.754">
+<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.608">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" followedTemplateLocation="template:/dark_nord_template.mm" followedMapLastTime="1714597358000" fit_to_viewport="false"/>
 
 <map_styles>
@@ -142,11 +142,19 @@
 <node TEXT="DepthShader" ID="ID_1424614211" CREATED="1732301654197" MODIFIED="1732301656435"/>
 <node TEXT="CompositionShader" ID="ID_1692551778" CREATED="1732301664113" MODIFIED="1732301666451"/>
 </node>
+<node TEXT="inputs" POSITION="bottom_or_right" ID="ID_1097723249" CREATED="1732753677572" MODIFIED="1732753692508">
+<node TEXT="Vertices" ID="ID_1580447444" CREATED="1732753697908" MODIFIED="1732753724486">
+<node TEXT="uint32 numVerts" ID="ID_1402281934" CREATED="1736785486552" MODIFIED="1736785505264"/>
+<node TEXT="(numVerts times) uint32 x,y,z; (pos)" ID="ID_1221190436" CREATED="1736785508338" MODIFIED="1736785594980"/>
+<node TEXT="(numVerts times) uint32 x,y,z; (norm)" ID="ID_744440081" CREATED="1736785508338" MODIFIED="1736785603554"/>
+<node TEXT="(numVerts times) uint32 x,y,0; (uv)" ID="ID_66629503" CREATED="1736785508338" MODIFIED="1736785637623"/>
 </node>
-<node TEXT="static void initDefault();" POSITION="bottom_or_right" ID="ID_835973724" CREATED="1720774746178" MODIFIED="1720774790582"/>
-<node TEXT="class Stage;" POSITION="bottom_or_right" ID="ID_442239505" CREATED="1732133600513" MODIFIED="1732133691450">
-<node TEXT="Kernel" ID="ID_1853361344" CREATED="1732133700950" MODIFIED="1732133715997"/>
-<node TEXT="virtual void passParam();" ID="ID_1860724572" CREATED="1732133722714" MODIFIED="1732133876895"/>
+<node TEXT="ProjectionMat" ID="ID_1498428733" CREATED="1732753698753" MODIFIED="1732753737055"/>
+<node TEXT="CameraTransform" ID="ID_1607374939" CREATED="1732753699354" MODIFIED="1732753745123"/>
+<node TEXT="Indices" ID="ID_190173114" CREATED="1732753699522" MODIFIED="1732753763272"/>
+<node TEXT="Assembly" ID="ID_1509346231" CREATED="1732753699698" MODIFIED="1732753768538"/>
+<node TEXT="FragmentBufferStat" ID="ID_1295861472" CREATED="1732902018502" MODIFIED="1733429571184"/>
+</node>
 </node>
 </node>
 <node TEXT="class StageFBuilder;" ID="ID_1222668397" CREATED="1732302064619" MODIFIED="1732302069465">

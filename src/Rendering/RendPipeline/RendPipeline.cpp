@@ -60,7 +60,16 @@ void Rendering::RendPipeline::pipe(cl::Buffer* output, std::vector<cl::NDRange> 
     params = 0;
 }
 
-void Rendering::RendPipeline::initDefault(cl::CommandQueue* q) {
+void Rendering::RendPipeline::initDefaults(cl::CommandQueue* q) {
+    initDefault2D(q);
+    initDefault3D(q);
+}
+void Rendering::RendPipeline::initDefault2D(cl::CommandQueue* q) {
+    // defaultPipe2d = RendPipelineFBuilder(q)
+    //     .withParam(...)
+    //     .....;
+}
+void Rendering::RendPipeline::initDefault3D(cl::CommandQueue* q) {
     // defaultPipe3d = RendPipelineFBuilder(q)
     //     .withParam(...)
     //     .....;

@@ -1,5 +1,8 @@
 #include"CLManager.h"
 
+double* Shaders::projectionMatrixOrtho;
+double* Shaders::projectionMatrixPersp;
+
 Rendering::CLManager* Rendering::CLManager::instance = NULL;
 
 Rendering::CLManager* Rendering::CLManager::GetInstance() {
@@ -16,31 +19,24 @@ void Rendering::CLManager::initCL() {
     }
     instance = new CLManager();
 
-    double* projectionMatrixOrtho = new double[16];
-    double* projectionMatrixPersp = new double[16];
+    double* Shaders::projectionMatrixOrtho = new double[16];
+    double* Shaders::projectionMatrixPersp = new double[16];
     for (int i = 0; i < 16; i++) {
-        projectionMatrixOrtho[i] = 0;
-        projectionMatrixPersp[i] = 0;
+        Shaders::projectionMatrixOrtho[i] = 0;
+        Shaders::projectionMatrixPersp[i] = 0;
     }
-    projectionMatrixOrtho[0] = 1.0/settings.sizeY;
-    projectionMatrixOrtho[5] = 1.0/settings.sizeY;
-    projectionMatrixOrtho[10] = -1 / (settings.farPlane - settings.nearPlane);
-    projectionMatrixOrtho[11] = -settings.nearPlane / (settings.farPlane - settings.nearPlane);
-    projectionMatrixOrtho[15] = 1;
+    Shaders::projectionMatrixOrtho[0] = 1.0/settings.sizeY;
+    Shaders::projectionMatrixOrtho[5] = 1.0/settings.sizeY;
+    Shaders::projectionMatrixOrtho[10] = -1 / (settings.farPlane - settings.nearPlane);
+    Shaders::projectionMatrixOrtho[11] = -settings.nearPlane / (settings.farPlane - settings.nearPlane);
+    Shaders::projectionMatrixOrtho[15] = 1;
 
     double scale = 1 / tan(settings.fovY * 0.5 * M_PI / 180);
-    projectionMatrixPersp[0] = scale;
-    projectionMatrixPersp[5] = scale;
-    projectionMatrixPersp[10] = -settings.farPlane / (settings.farPlane - settings.nearPlane);
-    projectionMatrixPersp[14] = -settings.farPlane * settings.nearPlane / (settings.farPlane - settings.nearPlane);
-    projectionMatrixPersp[11] = -1;
-
-    Shaders::projMatOrthoBuf = new cl::Buffer(GetInstance()->c, CL_MEM_READ_ONLY, sizeof(double)*16);
-    Shaders::projMatPerspBuf = new cl::Buffer(GetInstance()->c, CL_MEM_READ_ONLY, sizeof(double)*16);
-    GetInstance()->q.enqueueWriteBuffer(Shaders::projMatOrthoBuf, CL_TRUE, 0, sizeof(double)*16, projectionMatrixOrtho);
-    GetInstance()->q.enqueueWriteBuffer(Shaders::projMatPerspBuf, CL_TRUE, 0, sizeof(double)*16, projectionMatrixPersp);
-    delete[] projectionMatrixOrtho;
-    delete[] projectionMatrixPersp;
+    Shaders::projectionMatrixPersp[0] = scale;
+    Shaders::projectionMatrixPersp[5] = scale;
+    Shaders::projectionMatrixPersp[10] = -settings.farPlane / (settings.farPlane - settings.nearPlane);
+    Shaders::projectionMatrixPersp[14] = -settings.farPlane * settings.nearPlane / (settings.farPlane - settings.nearPlane);
+    Shaders::projectionMatrixPersp[11] = -1;
 }
 cl::CommandQueue* Rendering::CLManager::getQueue() {
     return GetInstance()->q;
@@ -56,6 +52,7 @@ void Rendering::CLManager::killCL() {
 void Rendering::CLManager::initKernels() {
     addKernel("VertexShader", Shaders::getVertexShader());
     addKernel("PrimitiveAssembly", Shaders::getPrimitiveAssembly());
+    addKernel("ClippingShader", Shaders::getClippingShader());
     addKernel("Rasterization", Shaders::getRasterization());
     addKernel("GBufferShader", Shaders::getGBufferShader());
     addKernel("LightingShader", Shaders::getLightingShader());

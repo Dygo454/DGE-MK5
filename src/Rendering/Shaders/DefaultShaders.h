@@ -7,13 +7,14 @@ namespace Shaders {
     double* projectionMatrixOrtho;
     double* projectionMatrixPersp;
 
-    const std::string& getVertexShader();
-    const std::string& getPrimitiveAssembly();
-    const std::string& getRasterization();
-    const std::string& getGBufferShader();
-    const std::string& getLightingShader();
-    const std::string& getDepthShader();
-    const std::string& getCompositionShader();
+    std::string getVertexShader();
+    std::string getPrimitiveAssembly();
+    std::string getClippingShader();
+    std::string getRasterization();
+    std::string getGBufferShader();
+    std::string getLightingShader();
+    std::string getDepthShader();
+    std::string getCompositionShader();
 }
 
 #endif

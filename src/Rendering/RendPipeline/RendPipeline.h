@@ -41,6 +41,8 @@ namespace Rendering {
         void pipe(cl::Buffer* output, std::vector<cl::NDRange> offsets, std::vector<cl::NDRange> locals, std::vector<cl::NDRange> globals);
 
         static void initDefault(cl::CommandQueue* q);
+        static void initDefault2D(cl::CommandQueue* q);
+        static void initDefault3D(cl::CommandQueue* q);
         static Rendering::RendPipeline* getDefault2D();
         static Rendering::RendPipeline* getDefault3D();
         static void killDefault();
