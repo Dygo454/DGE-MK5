@@ -1,6 +1,6 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.81">
+<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.735">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" followedTemplateLocation="template:/dark_nord_template.mm" followedMapLastTime="1714597358000" fit_to_viewport="false"/>
 
 <map_styles>
@@ -147,7 +147,7 @@
 <node TEXT="uint32 numVerts" ID="ID_1402281934" CREATED="1736785486552" MODIFIED="1736785505264"/>
 <node TEXT="(numVerts times) double x,y,z; (pos)" ID="ID_1221190436" CREATED="1736785508338" MODIFIED="1741126198394"/>
 <node TEXT="(numVerts times) double x,y,z; (norm)" ID="ID_744440081" CREATED="1736785508338" MODIFIED="1741126324066"/>
-<node TEXT="(numVerts times) uint32 x,y,0; (uv... normalized between 0 and INT_MAX)" ID="ID_66629503" CREATED="1736785508338" MODIFIED="1741126496988"/>
+<node TEXT="(numVerts times) double x,y,0;" ID="ID_66629503" CREATED="1736785508338" MODIFIED="1741140376562"/>
 </node>
 <node TEXT="ProjectionMat" ID="ID_1498428733" CREATED="1732753698753" MODIFIED="1732753737055"/>
 <node TEXT="CameraTransform" ID="ID_1607374939" CREATED="1732753699354" MODIFIED="1732753745123"/>
@@ -156,9 +156,19 @@
 <node TEXT="(numTris times) uint32 a, b, c;" ID="ID_97774504" CREATED="1741126102022" MODIFIED="1741126179060"/>
 </node>
 <node TEXT="Assembly" ID="ID_1509346231" CREATED="1732753699698" MODIFIED="1732753768538">
-<node TEXT="" ID="ID_1522718157" CREATED="1741126070522" MODIFIED="1741126070522"/>
+<node TEXT="uint32 numTris" ID="ID_1522718157" CREATED="1741126070522" MODIFIED="1741139746942"/>
+<node TEXT="(numTris times)" ID="ID_441100120" CREATED="1741140255695" MODIFIED="1741140270215">
+<node TEXT="(3 times) double x, y, z; (pos)" ID="ID_60619797" CREATED="1741140273087" MODIFIED="1741140385202"/>
+<node TEXT="(3 times) double x, y, z; (norm)" POSITION="bottom_or_right" ID="ID_979673948" CREATED="1741140273087" MODIFIED="1741140380482"/>
+<node TEXT="(3 times) double u, v;" POSITION="bottom_or_right" ID="ID_1291170493" CREATED="1741140273087" MODIFIED="1741140393028"/>
 </node>
-<node TEXT="FragmentBufferStat" ID="ID_1295861472" CREATED="1732902018502" MODIFIED="1733429571184"/>
+</node>
+<node TEXT="FragmentBufferStat" ID="ID_1295861472" CREATED="1732902018502" MODIFIED="1733429571184">
+<node TEXT="(pixel times)" ID="ID_605508645" CREATED="1741142963297" MODIFIED="1741142978953">
+<node TEXT="double depth, u, v;" ID="ID_877150179" CREATED="1741142990817" MODIFIED="1741143010944"/>
+<node TEXT="uint32 ind;" ID="ID_666082714" CREATED="1741143013216" MODIFIED="1741143032728"/>
+</node>
+</node>
 </node>
 </node>
 </node>
