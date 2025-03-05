@@ -54,8 +54,9 @@ void Rendering::RendPipeline::pipe(cl::Buffer* output, std::vector<cl::NDRange> 
             else stages[i]->getKernel()->setArg(n-1, (size_t)(paramInfo[currParams[n]*2 + 3]), currParam);
         }
         q->enqueueNDRangeKernel(*k, offsets[i], globals[i], locals[i]);
+        // TODO: Error checking!!!!
     }
-    q->finish(); // MAKE SURE EVERYTHING HAPPENS SEQUENTIALLY!!! SEE LAST TWO OPTIONAL ARGS IN ENQUEUENDRANGE
+    q->finish(); // TODO: MAKE SURE EVERYTHING HAPPENS SEQUENTIALLY!!! SEE LAST TWO OPTIONAL ARGS IN ENQUEUENDRANGE
     delete[] params;
     params = 0;
 }
@@ -81,8 +82,8 @@ Rendering::RendPipeline* Rendering::RendPipeline::getDefault3D() {
     return defaultPipe3d;
 }
 void Rendering::RendPipeline::killDefault() {
-    delete defaultPipe2d;
-    delete defaultPipe3d;
+    if (defaultPipe2d) delete defaultPipe2d;
+    if (defaultPipe3d) delete defaultPipe3d;
 }
 
 Rendering::StageFBuilder::StageFBuilder(cl::CommandQueue* q) : q(q) {}

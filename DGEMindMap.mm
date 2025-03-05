@@ -1,6 +1,6 @@
 <map version="freeplane 1.11.5">
 <!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
-<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.608">
+<node TEXT="Main" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1732302378386"><hook NAME="MapStyle" background="#2e3440" zoom="0.81">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" followedTemplateLocation="template:/dark_nord_template.mm" followedMapLastTime="1714597358000" fit_to_viewport="false"/>
 
 <map_styles>
@@ -145,14 +145,19 @@
 <node TEXT="inputs" POSITION="bottom_or_right" ID="ID_1097723249" CREATED="1732753677572" MODIFIED="1732753692508">
 <node TEXT="Vertices" ID="ID_1580447444" CREATED="1732753697908" MODIFIED="1732753724486">
 <node TEXT="uint32 numVerts" ID="ID_1402281934" CREATED="1736785486552" MODIFIED="1736785505264"/>
-<node TEXT="(numVerts times) uint32 x,y,z; (pos)" ID="ID_1221190436" CREATED="1736785508338" MODIFIED="1736785594980"/>
-<node TEXT="(numVerts times) uint32 x,y,z; (norm)" ID="ID_744440081" CREATED="1736785508338" MODIFIED="1736785603554"/>
-<node TEXT="(numVerts times) uint32 x,y,0; (uv)" ID="ID_66629503" CREATED="1736785508338" MODIFIED="1736785637623"/>
+<node TEXT="(numVerts times) double x,y,z; (pos)" ID="ID_1221190436" CREATED="1736785508338" MODIFIED="1741126198394"/>
+<node TEXT="(numVerts times) double x,y,z; (norm)" ID="ID_744440081" CREATED="1736785508338" MODIFIED="1741126324066"/>
+<node TEXT="(numVerts times) uint32 x,y,0; (uv... normalized between 0 and INT_MAX)" ID="ID_66629503" CREATED="1736785508338" MODIFIED="1741126496988"/>
 </node>
 <node TEXT="ProjectionMat" ID="ID_1498428733" CREATED="1732753698753" MODIFIED="1732753737055"/>
 <node TEXT="CameraTransform" ID="ID_1607374939" CREATED="1732753699354" MODIFIED="1732753745123"/>
-<node TEXT="Indices" ID="ID_190173114" CREATED="1732753699522" MODIFIED="1732753763272"/>
-<node TEXT="Assembly" ID="ID_1509346231" CREATED="1732753699698" MODIFIED="1732753768538"/>
+<node TEXT="Indices" ID="ID_190173114" CREATED="1732753699522" MODIFIED="1741125747662">
+<node TEXT="uint32 numTris" ID="ID_891670013" CREATED="1741126066535" MODIFIED="1741126099863"/>
+<node TEXT="(numTris times) uint32 a, b, c;" ID="ID_97774504" CREATED="1741126102022" MODIFIED="1741126179060"/>
+</node>
+<node TEXT="Assembly" ID="ID_1509346231" CREATED="1732753699698" MODIFIED="1732753768538">
+<node TEXT="" ID="ID_1522718157" CREATED="1741126070522" MODIFIED="1741126070522"/>
+</node>
 <node TEXT="FragmentBufferStat" ID="ID_1295861472" CREATED="1732902018502" MODIFIED="1733429571184"/>
 </node>
 </node>

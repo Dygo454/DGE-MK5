@@ -1,4 +1,5 @@
 commit ?= Unspecified Commit
+MAX_RASTER_DEPTH ?= 10
 PROGRAM = main.cpp
 OUTPUT = UntitledGam
 SOURCES = src/OS/*.cpp src/OS/Windows/*.cpp src/Error/*.cpp src/Input/*.cpp src/Time/*.cpp src/Rendering/RendPipeline/*.cpp src/Rendering/CLManagement/*.cpp  src/Rendering/Shaders/Default/*.cpp
@@ -8,7 +9,7 @@ CFLAGS = -std=c++11 -msse2 -O2
 
 all:
 	windres my.rc -O coff -o my.res
-	g++ -DDEBUG=1 $(CFLAGS) $(PROGRAM) $(SOURCES) -o $(OUTPUT) $(INCLUDES) $(LIBRARIES)
+	g++ -DDEBUG=1 -DMAX_RASTER_DEPTH=\"$(MAX_RASTER_DEPTH)\" $(CFLAGS) $(PROGRAM) $(SOURCES) -o $(OUTPUT) $(INCLUDES) $(LIBRARIES)
 
 release:
 	windres my.rc -O coff -o my.res
